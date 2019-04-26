@@ -13,11 +13,11 @@ def on_service_state_change(
         info = zeroconf.get_service_info(service_type, name)
         if info:
             if info.properties:
-                print(info.properties['ipv6'])
+                print(info.properties[b'ipv6'].decode('UTF-8'))
 
 if __name__ == '__main__':
     zeroconf = Zeroconf()
     browser = ServiceBrowser(zeroconf, "_su._tcp.local.", handlers=[on_service_state_change])
 
-    sleep(2)
+    sleep(1)
     zeroconf.close()
