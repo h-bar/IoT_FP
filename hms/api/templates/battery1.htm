@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <title>Battery</title>
 <style>
 table {
@@ -16,6 +15,24 @@ table, th, td {
 <body>
 
 <h1>KIOSK MONITORING SYSTEM</h1>
+<div>
+   <table>
+   <TABLE  BORDER="2">
+      <tbody>
+         <tr>
+         <td><a href="/">Homepage</a></td>
+         <td><a href="/api/battery">Battery</a></td>
+         <td><a href="/api/locker">Lockers</a></td>
+         <td><a href="/api/network">Network</a></td>
+         <td><a href="/api/amenities">Amenities</a></td>
+         <td><a href="/api/help">Help</a></td>
+         </tr>
+      </tbody>
+   </table>    
+</div>
+
+
+<h2>Battery Page</h2>
 
 <table>
 <TABLE  BORDER="2">
@@ -24,17 +41,23 @@ table, th, td {
          <H3><BR>BATTERY STATUS</H3>
       </TH>
    </TR>
-   <TR id='title'>
       <TH>&nbsp</TH>
-   </TR>
-   <TR id='temp'>
+      <TH>Battery 1</TH>
+      <TH>Battery 2</TH>
+   <TR>
       <TD>Temperature</TD>
+      <TD>{{ b1.temp }}</TD>
+      <TD>{{ b2.temp }}</TD>
    </TR>
-   <TR id='status'>
+   <TR>
       <TD>Status</TD>
+      <TD>{{ b1.is_online }}</TD>
+      <TD>{{ b2.is_online }}</TD>
    </TR>
-   <TR id='state'>
+   <TR>
       <TD>State</TD>
+      <TD>{{ b1.is_charging }}</TD>
+      <TD>{{ b2.is_charging }}</TD>
    </TR>
 </table>
 
@@ -49,44 +72,36 @@ table, th, td {
          <H3><BR>POWER STATISTICS</H3>
       </TH>
    </TR>
-   <TR id='title'>
       <TH>&nbsp</TH>
-   </TR>
-   <TR id='percentage'>
+      <TH>Battery 1</TH>
+      <TH>Battery 2</TH>
+   <TR>
       <TD>Percentage of Power Available</TD>
+      <TD>{{ b1.percentage }}</TD>
+      <TD>{{ b2.percentage }}</TD>
    </TR>
-   <TR id='e_in'>
+   <TR>
       <TD>Total Power Input</TD>
+      <TD>{{ b1.e_in }}</TD>
+      <TD>{{ b2.e_in }}</TD>
    </TR>
-   <TR id='e_out'>
+   <TR>
       <TD>Total Power Output</TD>
+      <TD>{{ b1.e_out }}</TD>
+      <TD>{{ b2.e_out }}</TD>
    </TR>
-   <TR id='p_in'>
+   <TR>
       <TD>Current Power Input</TD>
+      <TD>{{ b1.p_in }}</TD>
+      <TD>{{ b2.p_in }}</TD>
    </TR>
-   <TR id='p_out'>
+   <TR>
       <TD>Current Power Output</TD>
+      <TD>{{ b1.p_out }}</TD>
+      <TD>{{ b2.p_out }}</TD>
    </TR>
 </table>
+
+
 </body>
-
-<script>
-   function fetchData() {
-      const xhr = new XMLHttpRequest();
-      const url='/api/b';
-
-      xhr.open("GET", url);
-      xhr.send();
-      xhr.onreadystatechange=(e)=>{
-         if (xhr.readyState == 4) {
-            data = JSON.parse(xhr.responseText)
-            var td = document.createElement('td')
-            td.appendChild(document.createTextNode(data['temp']))
-            document.getElementById('temp').appendChild(td)
-         }
-      }
-   }
-
-   fetchData()
-</script>
 </html>
