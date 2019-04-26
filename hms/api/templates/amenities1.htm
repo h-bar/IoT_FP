@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Amenities</title>
+<style>
+table {
+  border-collapse: collapse;
+}
+
+table, th, td {
+  border: 1px solid black;
+}
+</style>
+</head>
+<body>
+
+<h1>KIOSK MONITORING SYSTEM</h1>
+<div>
+   <table>
+   <TABLE  BORDER="2">
+      <tbody>
+         <tr>
+         <td><a href="/">Homepage</a></td>
+         <td><a href="/api/battery">Battery</a></td>
+         <td><a href="/api/locker">Lockers</a></td>
+         <td><a href="/api/network">Network</a></td>
+         <td><a href="/api/amenities">Amenities</a></td>
+         <td><a href="/api/help">Help</a></td>
+         </tr>
+      </tbody>
+   </table>    
+</div>
+
+
+<h2>Amenities</h2>
+
+<p>Kiosk Temperature: {{ a.kiosk_temp }} </p>
+<table>
+<TABLE  BORDER="2">
+   <TR>
+      <TH COLSPAN="3">
+         <H3><BR>DEVICE STATISTICS</H3>
+      </TH>
+   </TR>
+      <TH>&nbsp</TH>
+      <TH>Status</TH>
+      <TH>Power Consumption</TH>
+   <TR>
+      <TD>Kiosk Lighting</TD>
+      <TD>{{ a.kiosk_lights }}</TD>
+      <TD>{{ a.kiosk_lights_p }}</TD>
+   </TR>
+   <TR>
+      <TD>Charging Locker Lighting</TD>
+      <TD>{{ a.locker_lights }}</TD>
+      <TD>{{ a.locker_lights_p }}</TD>
+   </TR>
+   <TR>
+      <TD>Mini Fridge</TD>
+      <TD>{{ a.mini_fridge }}</TD>
+      <TD>{{ a.mini_fridge_p }}</TD>
+   </TR>
+   <TR>
+      <TD>Coffee Maker</TD>
+      <TD>{{ a.coffee_machine }}</TD>
+      <TD>{{ a.coffee_machine_p }}</TD>
+   </TR>
+   <TR>
+      <TD>Blender</TD>
+      <TD>{{ a.blender }}</TD>
+      <TD>{{ a.blender_p }}</TD>
+   </TR>
+   <TR>
+      <TD>Outdoor TV</TD>
+      <TD>{{ a.tv }}</TD>
+      <TD>{{ a.tv_p }}</TD>
+   </TR>
+</table>
+
+</body>
+</html>
+
+

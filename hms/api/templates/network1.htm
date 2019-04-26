@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Network</title>
+<style>
+table {
+  border-collapse: collapse;
+}
+
+table, th, td {
+  border: 1px solid black;
+}
+</style>
+</head>
+
+<body>
+<h1>KIOSK MONITORING SYSTEM</h1>
+<div>
+   <table>
+   <TABLE  BORDER="2">
+      <tbody>
+         <tr>
+         <td><a href="/">Homepage</a></td>
+         <td><a href="/api/battery">Battery</a></td>
+         <td><a href="/api/locker">Lockers</a></td>
+         <td><a href="/api/network">Network</a></td>
+         <td><a href="/api/amenities">Amenities</a></td>
+         <td><a href="/api/help">Help</a></td>
+         </tr>
+      </tbody>
+   </table>    
+</div>
+
+<h2>Network</h2>
+<table>
+<TABLE  BORDER="2">
+   <TR>
+      <TH COLSPAN="2">
+         <H3><BR>CONNECTION STATUS</H3>
+      </TH>
+   </TR>
+   <TR>
+      <TD>Internet Connection Status:</TD>
+      <TD>{{ n.is_connected}}</TD>
+   </TR>
+   <TR>
+      <TD>Router Status:</TD>
+      <TD>{{ n.is_router_on }}</TD>
+   </TR>
+   <TR>
+      <TD>Modem Status:</TD>
+      <TD>{{ n.is_modem_on }}</TD>
+   </TR>
+</table>
+
+<p>&nbsp</p>
+
+<p>&nbsp</p>
+
+<p>&nbsp</p>
+
+<table>
+<TABLE  BORDER="2">
+   <TR>
+      <TH COLSPAN="2">
+         <H3><BR>CONNECTION STATISTICS</H3>
+      </TH>
+   </TR>
+   <TR>
+      <TD>Total Bandwidth</TD>
+      <TD>{{ n.bandwidth }} Mbps</TD>
+   </TR>
+   <TR>
+      <TD>Bandwidth Usage</TD>
+      <TD>{{ n.bandwidth_usage }} Mbps</TD>
+   </TR>
+   <TR>
+      <TD>Number of Connected Devices</TD>
+      <TD>{{ n.num_device }}</TD>
+   </TR>
+   <TR>
+      <TD>Modem web interface entrance</TD>
+      <TD>{{ n.modem_web_interface }}</TD>
+   </TR>
+   <TR>
+      <TD>Router web interface entrance</TD>
+      <TD>{{ n.router_web_interface }}</TD>
+   </TR>
+</table>
+
+</body>
+</html>
+
+
+

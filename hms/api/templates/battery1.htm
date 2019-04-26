@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<title>Battery</title>
+<style>
+table {
+  border-collapse: collapse;
+}
+
+table, th, td {
+  border: 1px solid black;
+}
+</style>
+</head>
+<body>
+
+<h1>KIOSK MONITORING SYSTEM</h1>
+
+<table>
+<TABLE  BORDER="2">
+   <TR>
+      <TH COLSPAN="3">
+         <H3><BR>BATTERY STATUS</H3>
+      </TH>
+   </TR>
+   <TR id='title'>
+      <TH>&nbsp</TH>
+   </TR>
+   <TR id='temp'>
+      <TD>Temperature</TD>
+   </TR>
+   <TR id='status'>
+      <TD>Status</TD>
+   </TR>
+   <TR id='state'>
+      <TD>State</TD>
+   </TR>
+</table>
+
+<p>&nbsp</p>
+
+<p>&nbsp</p>
+
+<table>
+<TABLE  BORDER="2">
+   <TR>
+      <TH COLSPAN="3">
+         <H3><BR>POWER STATISTICS</H3>
+      </TH>
+   </TR>
+   <TR id='title'>
+      <TH>&nbsp</TH>
+   </TR>
+   <TR id='percentage'>
+      <TD>Percentage of Power Available</TD>
+   </TR>
+   <TR id='e_in'>
+      <TD>Total Power Input</TD>
+   </TR>
+   <TR id='e_out'>
+      <TD>Total Power Output</TD>
+   </TR>
+   <TR id='p_in'>
+      <TD>Current Power Input</TD>
+   </TR>
+   <TR id='p_out'>
+      <TD>Current Power Output</TD>
+   </TR>
+</table>
+</body>
+
+<script>
+   function fetchData() {
+      const xhr = new XMLHttpRequest();
+      const url='/api/b';
+
+      xhr.open("GET", url);
+      xhr.send();
+      xhr.onreadystatechange=(e)=>{
+         if (xhr.readyState == 4) {
+            data = JSON.parse(xhr.responseText)
+            var td = document.createElement('td')
+            td.appendChild(document.createTextNode(data['temp']))
+            document.getElementById('temp').appendChild(td)
+         }
+      }
+   }
+
+   fetchData()
+</script>
+</html>

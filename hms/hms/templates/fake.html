@@ -1,0 +1,150 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Homepage</title>
+<style>
+table {
+  border-collapse: collapse;
+}
+
+table, th, td {
+  border: 1px solid black;
+}
+</style>
+</head>
+<body>
+
+<h1>KIOSK MONITORING SYSTEM</h1>
+<div>
+   <table>
+   <TABLE  BORDER="2">
+      <tbody>
+         <tr>
+         <td><a href="/">Homepage</a></td>
+         <td><a href="/api/battery">Battery</a></td>
+         <td><a href="/api/locker">Lockers</a></td>
+         <td><a href="/api/network">Network</a></td>
+         <td><a href="/api/amenities">Amenities</a></td>
+         <td><a href="/api/help">Help</a></td>
+         </tr>
+      </tbody>
+   </table>    
+</div>
+
+<br/>
+
+<div>
+    <button onclick="new_b()">new battery record</button>
+    <button onclick="new_l()">new locker record</button>
+    <button onclick="new_n()">new network record</button>
+    <button onclick="new_a()">new amenities record</button>
+</div>
+
+<br/>
+<div id='resp'></div>
+</body>
+
+<script>
+function randrange(l, h) {
+    return parseInt((Math.random() * (h - l) + l).toFixed(0))
+}
+
+function randbool() {
+    return Math.random() >= 0.5
+}
+
+function new_b() {
+    const xhr = new XMLHttpRequest();
+    const url='/api/battery';
+    var data = JSON.stringify({
+        'device_id': randrange(0, 1),
+        'capacity': 3000,
+        'percentage': randrange(20, 100),
+        'is_charging': true,
+        'is_online': true,
+        'temp' : randrange(90, 122),     
+        'e_in' : randrange(0, 900),
+        'e_out': randrange(0, 900),
+        'p_in': randrange(0, 4000),
+        'p_out': randrange(0, 4000)
+    });
+
+    xhr.open("POST", url);
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.send(data);
+    xhr.onreadystatechange=(e)=>{
+        document.getElementById('resp').innerHTML = xhr.responseText
+    }
+}
+
+function new_l() {
+    const xhr = new XMLHttpRequest();
+    const url='/api/locker';
+    var data = JSON.stringify({
+        'num_lockers': 70,
+        'num_charging': randrange(0, 70),
+        'num_charged': randrange(0, 100),
+        'energy_used': randrange(0, 200),
+        'web_interface' : 'Locker interface',
+    });
+
+    xhr.open("POST", url);
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.send(data);
+    xhr.onreadystatechange=(e)=>{
+        document.getElementById('resp').innerHTML = xhr.responseText
+    }
+}
+
+function new_n() {
+    const xhr = new XMLHttpRequest();
+    const url='/api/network';
+    var data = JSON.stringify({
+        'is_connected': true,
+        'is_modem_on': true,
+        'bandwidth': 800,
+        'bandwidth_usage': randrange(0, 600),
+        'modem_web_interface' : 'Modem interface',     
+        'is_router_on' : true,
+        'num_device': randrange(0, 200),
+        'router_web_interface': 'Router interface' 
+    });
+
+    xhr.open("POST", url);
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.send(data);
+    xhr.onreadystatechange=(e)=>{
+        document.getElementById('resp').innerHTML = xhr.responseText
+    }
+}
+
+function new_a() {
+    const xhr = new XMLHttpRequest();
+    const url='/api/amenities';
+    var data = JSON.stringify({
+        'kiosk_temp': randrange(60, 150),
+        'locker_lights': randbool(),
+        'locker_lights_p': randrange(0, 20),
+        'kiosk_lights': randbool(),
+        'kiosk_lights_p': randrange(0, 40),
+        'mini_fridge': randbool(),
+        'mini_fridge_p': randrange(0, 40),
+        'coffee_machine' : randbool(),     
+        'coffee_machine_p' : randrange(0, 40),
+        'blender': randbool(),
+        'blender_p': randrange(0, 40),
+        'tv': randbool(),
+        'tv_p': randrange(0, 40)
+    });
+
+    xhr.open("POST", url);
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.send(data);
+    xhr.onreadystatechange=(e)=>{
+        document.getElementById('resp').innerHTML = xhr.responseText
+    }
+}
+
+</script>
+</html>

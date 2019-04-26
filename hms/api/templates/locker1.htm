@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<title>Lockers</title>
+<style>
+table {
+  border-collapse: collapse;
+}
+
+table, th, td {
+  border: 1px solid black;
+}
+</style>
+</head>
+<body>
+
+<h1>KIOSK MONITORING SYSTEM</h1>
+<div>
+   <table>
+   <TABLE  BORDER="2">
+      <tbody>
+         <tr>
+         <td><a href="/">Homepage</a></td>
+         <td><a href="/api/battery">Battery</a></td>
+         <td><a href="/api/locker">Lockers</a></td>
+         <td><a href="/api/network">Network</a></td>
+         <td><a href="/api/amenities">Amenities</a></td>
+         <td><a href="/api/help">Help</a></td>
+         </tr>
+      </tbody>
+   </table>    
+</div>
+
+
+<h2>Phone Charging Locker System</h2>
+<p>Number of Phones being Charged: {{ l.num_charging }}</p>
+<p>Number of Available Lockers: {{ l.num_lockers }}</p>
+
+<p>&nbsp</p>
+
+<h3>Statistics</h3>
+<p>Number of Phones Charged that Day: {{ l.num_charged }}</p>
+<p>Total Energy Used to Charge Phones Today: {{ l.energy_used }}</p>
+<p>Locker Management Interface Enterance: {{ l.web_interface }}</p>
+
+
+</body>
+</html>
+
+
