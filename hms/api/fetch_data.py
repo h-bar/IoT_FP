@@ -10,11 +10,12 @@ def get_all():
     for su in getSUs():
         su = su.strip()
         uri = 'coap://['+su+']/data'
-        process = Popen(['coap-client', '-m', 'get', uri], stdout=PIPE, stderr=PIPE)
+        process = Popen(['coap-client', '-m', 'get', '-B', '3', uri], stdout=PIPE, stderr=PIPE)
         stdout, _ = process.communicate()
 
         data = stdout.decode('UTF-8').split('\n')[1]
-        data = json.loads(data)
+        if len(data.strip()) != 0:
+            data = json.loads(data)
         all_data.append(data)
     return all_data
     

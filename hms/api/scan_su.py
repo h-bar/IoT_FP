@@ -13,9 +13,10 @@ def on_service_state_change(
         info = zeroconf.get_service_info(service_type, name)
         if info:
             if info.properties:
-                print(info.properties[b'ipv6'].decode('UTF-8').split('%')[0])
+                open('SUs', 'a').write(info.properties[b'ipv6'].decode('UTF-8').split('%')[0])
 
 def scan_su():
+    open('SUs', 'w').close()
     zeroconf = Zeroconf()
     browser = ServiceBrowser(zeroconf, "_su._tcp.local.", handlers=[on_service_state_change])
 

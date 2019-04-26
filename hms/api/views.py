@@ -7,6 +7,7 @@ from django.shortcuts import render
 
 # Create your views here.
 from django.http import JsonResponse
+from django.shortcuts import redirect
 from django.http import HttpResponse
 
 from .models import *
@@ -19,11 +20,13 @@ def index(request):
 def battery(request):
     if request.method == 'GET':
         data = fetch_data.get_all()
-        b1 = data[0]
-        print(b1)
-        if len(data) == 2:
-            b2 = data[1]
+        b1 = None
         b2 = None
+        if len(data) == 1:
+            b1 = data[0]
+        if len(data) == 2:
+            b1 = data[0]
+            b2 = data[1]
         context = {
             'b1': b1,
             'b2': b2
@@ -34,3 +37,8 @@ def battery(request):
         b = Battery(**data)
         b.save()
         return HttpResponse(str(b.__dict__))
+
+def refresh(request):
+    from . import scan_su
+    scan_su.scan_su()
+    return redirect('/api/battery')
